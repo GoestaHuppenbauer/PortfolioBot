@@ -88,24 +88,16 @@ class LuisBot extends ActivityHandler {
             break;
         case 'Programmiersprachen':
             await context.sendActivity(`Durch die Uni habe ich:`);
-            await Sleep(700);
             await context.sendActivity(`Java Script,`);
-            await Sleep(900);
             await context.sendActivity(`PHP,`);
-            await Sleep(1000);
             await context.sendActivity(`Und die Arduino IDE gelernt!`);
-            await Sleep(700);
             await context.sendActivity(`Aber auch mit Datenbanken also MySql hatte ich dort schon zu tun.`);
             break;
         case 'Programme':
             await context.sendActivity(`Ich kenne mich mit folgender Software aus:`);
-            await Sleep(700);
             await context.sendActivity(`Adobe XD,`);
-            await Sleep(900);
             await context.sendActivity(`Photoshop CC,`);
-            await Sleep(1000);
             await context.sendActivity(`Sketch`);
-            await Sleep(700);
             await context.sendActivity(`Und allen Microsoft Programmen`);
             break;
         default:
