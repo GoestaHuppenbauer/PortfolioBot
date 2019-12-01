@@ -54,12 +54,12 @@ class LuisBot extends ActivityHandler {
          * Whenever a user joins the conversation this message is send to the user.
          */
         this.onMembersAdded(async (context, next) => {
-            const welcomeText = 'Send me a message and I will try to predict your intent.';
+            const welcomeText = 'Hallo. Ich bin der Portfolio Bot! Sie können mir fragen zu meiner Person oder zu Projekten stellen die ich Ihnen dann beantworte.';
             const membersAdded = context.activity.membersAdded;
 
             for (const member of membersAdded) {
                 if (member.id !== context.activity.recipient.id) {
-                    await context.sendActivity(`Welcome to NLP with LUIS ${ member.name }. ${ welcomeText }`);
+                    await context.sendActivity(`Hallo ${ member.name }. ${ welcomeText }`);
                 }
             }
 
@@ -78,7 +78,9 @@ class LuisBot extends ActivityHandler {
             await context.sendActivity(`HfG Schwäbisch Gmünd`);
             break;
         case 'Hobbies':
-            await context.sendActivity(`Meine Hobbys sind: ...np`);
+            await context.sendActivity(`Meine Hobbys sind:`);
+            await context.sendActivity(`Fußball schauen und spielen,`);
+            await context.sendActivity(`Gitarre spielen und singen`);
             break;
         case 'Sprachen':
             await context.sendActivity(`Ich Spreche:`);
@@ -100,32 +102,33 @@ class LuisBot extends ActivityHandler {
             await context.sendActivity(`Sketch`);
             await context.sendActivity(`Und allen Microsoft Programmen`);
             break;
+        case 'EntwurfTools':
+            await context.sendActivity(`In Entwurf Grundlagen 2 haben wir hauptsächlich mit Adobe XD gearbeitet.`);
+            await context.sendActivity(`Damals war das Teamwork Feature noch ganz neu und auch noch nicht so stabil. Häufig haben wir Zwischenstände deswegen verloren.`);
+            break;
+        case 'EntwurfAufgabe':
+            await context.sendActivity(`Die Kühlschrank App ist das Ergebnis des Fachs 'Entwurf Grundlagen 2'. Die Aufgabenstellung hierfür war relativ eng gehalten.`);
+            await context.sendActivity(`Wir hatten einen Funktionsumfang der erreicht werden sollte. Die nötigen Funktionen waren:
+            \n - Einsehen welche Nahrungsmittel sich im Kühlschrank befinden
+            \n - Es musste möglich sein Einstellungen am Kühlschrank zu ändern
+            \n - Mindestens eine Benachrichtigung sollte designt werden. 
+            \n Außerdem wurde es uns frei gehalten zusärtzliche Funktionen einzubauen.`);
+            break;
+        case 'EntwurfAufteilung':
+            await context.sendActivity(`Eigentlich haben wir an allem gemeinsam gearbeitet. Auch wenn sich die Team Arbeit nicht immer einfach dargestellt hat da man sich bei Formen und Farben sehr oft abstimmen musste, sind wir mit dem Endergebnis sehr zufrieden.`);
+            break;
         default:
             console.log(`Dispatch unrecognized intent: ${ intent }.`);
             await context.sendActivity(`Da weiß ich leider nicht weiter
                                                 \nSie könnten mich aber zum Beispiel nach folgenden Sachen fragen:
-                                                \n - '1
-                                                \n - '2'
-                                                \nTry typing '3' or '4'.`);
+                                                \n - 'Programmiersprachen und Software'
+                                                \n - 'Sprachen und Eigenschaften'
+                                                \n - 'Projekten auf dieser Seite' oder 'meinem Lebenslauf'.`);
             break;
         }
     }
 
-    async processShoppingOrder(context, luisResult) {
-        // Since the LuisRecognizer was configured to include the raw results, get returned entity data.
-        var entities = luisResult.entities;
 
-        // check if the entity found is the one we are looking for
-        // this is usually only necessary if there are more then one entity in an intent
-        if(entities.length > 0 && entities[0].type == "product") {
-            // we found a product
-            var product = entities[0].entity;
-            await context.sendActivity(`Your ordered ${ product }`);
-        } else {
-            // we found nothing
-            await context.sendActivity(`I do not know what you ordered.`);
-        }
-    }
 }
 
 
