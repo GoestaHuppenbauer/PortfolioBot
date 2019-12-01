@@ -78,7 +78,7 @@ class LuisBot extends ActivityHandler {
             await context.sendActivity(`HfG Schwäbisch Gmünd`);
             break;
         case 'Hobby':
-            await context.sendActivity(`Meine Hobbys sind: ...`);
+            await context.sendActivity(`Meine Hobbys sind: ...np`);
             break;
         default:
             console.log(`Dispatch unrecognized intent: ${ intent }.`);
@@ -91,21 +91,7 @@ class LuisBot extends ActivityHandler {
         }
     }
 
-    async processShoppingOrder(context, luisResult) {
-        // Since the LuisRecognizer was configured to include the raw results, get returned entity data.
-        var entities = luisResult.entities;
 
-        // check if the entity found is the one we are looking for
-        // this is usually only necessary if there are more then one entity in an intent
-        if(entities.length > 0 && entities[0].type == "product") {
-            // we found a product
-            var product = entities[0].entity;
-            await context.sendActivity(`Your ordered ${ product }`);
-        } else {
-            // we found nothing
-            await context.sendActivity(`I do not know what you ordered.`);
-        }
-    }
 }
 
 
