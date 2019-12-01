@@ -71,19 +71,22 @@ class LuisBot extends ActivityHandler {
     // This is  called when LUIS finished parsing the message and returns possible intents
     async dispatchToTopIntentAsync(context, intent, recognizerResult) {
         switch (intent) {
-        case 'get_time':
-            await context.sendActivity(`Current time is ${ new Date().toLocaleTimeString() }`);
+        case 'Lebenslauf':
+            await context.sendActivity(`Grundschule`);
+            await context.sendActivity(`Realschule`);
+            await context.sendActivity(`weiterführendes Gymnasium`);
+            await context.sendActivity(`HfG Schwäbisch Gmünd`);
             break;
-        case 'Shopping_Order':
-            await this.processShoppingOrder(context, recognizerResult.luisResult);
+        case 'Hobby':
+            await context.sendActivity(`Meine Hobbys sind: ...`);
             break;
         default:
             console.log(`Dispatch unrecognized intent: ${ intent }.`);
-            await context.sendActivity(`No LUIS intents were found.
-                                                \nThis sample is about identifying two user intents:
-                                                \n - 'Time_Current'
-                                                \n - 'Shopping_Order'
-                                                \nTry typing 'What time is it?' or 'I want a pizza!'.`);
+            await context.sendActivity(`Da weiß ich leider nicht weiter
+                                                \nSie könnten mich aber zum Beispiel nach folgenden Sachen fragen:
+                                                \n - '1
+                                                \n - '2'
+                                                \nTry typing '3' or '4'.`);
             break;
         }
     }
@@ -104,5 +107,7 @@ class LuisBot extends ActivityHandler {
         }
     }
 }
+
+
 
 module.exports.LuisBot = LuisBot;
